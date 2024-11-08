@@ -1,0 +1,22 @@
+FROM jenkins/jenkins:lts
+
+# Instalar Git, mailutils e outros pacotes necessários
+USER root
+RUN apt-get update && \
+    apt-get install -y git mailutils && \
+    apt-get clean
+
+# Copiar o arquivo jenkins.yml para o Jenkins
+COPY jenkins.yml /var/jenkins_home/jenkins.yml
+
+# Definir permissões adequadas
+RUN chown jenkins:jenkins /var/jenkins_home/jenkins.yml
+
+# Configurar o JCasC
+ENV CASC_JENKINS_CONFIG=/var/jenkins_home/jenkins.yml
+
+# Voltar para o usuário jenkins
+USER jenkins
+
+# Expôr a porta do Jenkins
+EXPOSE 8080

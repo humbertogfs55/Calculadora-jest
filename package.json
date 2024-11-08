@@ -4,7 +4,8 @@
   "description": "Projeto de calculadora com testes unitários usando Jest",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "npx nexe src/calculator.js --build --target windows-x64-20"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
     "jest-junit": "^16.0.0"
   },
   "dependencies": {
+    "calculadora-jest": "file:",
     "prompt-sync": "^4.2.0"
   }
 }

@@ -1,0 +1,38 @@
+services:
+  jenkins:
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile.jenkins
+    ports:
+      - "8080:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    environment:
+      CASC_JENKINS_CONFIG: /var/jenkins_home/jenkins.yml
+    networks:
+      - jenkins-network
+
+  node:
+    build:
+      context: .  # Root directory (package.json is here)
+      dockerfile: Docker/Dockerfile.node  # Path to your Node.js Dockerfile
+    volumes:
+      - .:/usr/src/app  # This mounts the root directory (including package.json) to /usr/src/app
+    working_dir: /usr/src/app  # Ensure the working directory is correct
+    command: ["npm", "test"]  # Running tests by default; adjust as needed
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./test-results:/usr/share/nginx/html/test-results
+    ports:
+      - "80:80"
+    networks:
+      - jenkins-network
+
+networks:
+  jenkins-network:
+    driver: bridge
+
+volumes:
+  jenkins_home:
