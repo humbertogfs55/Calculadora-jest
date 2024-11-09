@@ -1,0 +1,36 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <style>
+        /* Basic styling for the calculator display and buttons */
+        .result { font-size: 2em; }
+        .buttons { display: flex; flex-wrap: wrap; }
+        button { width: 75px; height: 75px; font-size: 1.5em; }
+    </style>
+</head>
+<body>
+    <div class="result">0</div>
+    <div class="buttons">
+        <button class="button" data-value="1">1</button>
+        <button class="button" data-value="2">2</button>
+        <button class="button" data-value="3">3</button>
+        <button class="button" data-value="4">4</button>
+        <button class="button" data-value="5">5</button>
+        <button class="button" data-value="6">6</button>
+        <button class="button" data-value="7">7</button>
+        <button class="button" data-value="8">8</button>
+        <button class="button" data-value="9">9</button>
+        <button class="button" data-value="0">0</button>
+        <button class="button" data-value="+">+</button>
+        <button class="button" data-value="-">-</button>
+        <button class="button" data-value="*">*</button>
+        <button class="button" data-value="/">/</button>
+        <button class="button" data-value="=">=</button>
+    </div>
+    <script src="src/calculator.js"></script> <!-- Loads your calculator code -->
+    <script src="src/script.js"></script> <!-- Script to handle button interactions, if needed -->
+</body>
+</html>
