@@ -1,7 +1,3 @@
-
-// Import calculator functions
-const { add, subtract, multiply, divide } = require('./calculator');
-
 // Select elements
 const resultDisplay = document.querySelector('.result');
 const buttons = document.querySelectorAll('button');
@@ -10,36 +6,22 @@ const buttons = document.querySelectorAll('button');
 let currentNumber = '';
 let firstOperand = null;
 let operator = null;
-let shouldResetDisplay = false; // Track when to reset display after an operation
 
 // Handle button clicks
 buttons.forEach(button => {
     button.addEventListener('click', () => {
         const value = button.textContent;
-
         if (isNumber(value)) {
-            if (shouldResetDisplay) {
-                currentNumber = '';  // Clear display after an operation
-                shouldResetDisplay = false;
-            }
             currentNumber += value;
             updateDisplay(currentNumber);
         } else if (isOperator(value)) {
-            if (firstOperand === null) {
-                firstOperand = parseFloat(currentNumber);
-            } else if (operator) {
-                firstOperand = calculate(firstOperand, operator, parseFloat(currentNumber));
-                updateDisplay(firstOperand);
-            }
+            firstOperand = currentNumber;
             operator = value;
-            shouldResetDisplay = true;
+            currentNumber = '';
         } else if (value === '=') {
-            if (operator && firstOperand !== null) {
-                currentNumber = calculate(firstOperand, operator, parseFloat(currentNumber));
-                updateDisplay(currentNumber);
-                firstOperand = parseFloat(currentNumber);
-                operator = null;
-            }
+            const result = calculate(firstOperand, operator, currentNumber);
+            updateDisplay(result);
+            currentNumber = result;
         } else if (value === 'C') {
             resetCalculator();
         }
@@ -69,23 +51,21 @@ function isOperator(value) {
     return ['+', '-', '*', '/'].includes(value);
 }
 
-// Perform the calculation
+// Perform the calculation using the functions from calculator.js (exposed via preload.js)
 function calculate(operand1, operator, operand2) {
+    // Access the calculator functions via the electron object exposed by preload.js
+    const { add, subtract, multiply, divide } = window.electron.calculator;
+
     switch (operator) {
         case '+':
-            return add(operand1, operand2);
+            return add(Number(operand1), Number(operand2));
         case '-':
-            return subtract(operand1, operand2);
+            return subtract(Number(operand1), Number(operand2));
         case '*':
-            return multiply(operand1, operand2);
+            return multiply(Number(operand1), Number(operand2));
         case '/':
-            try {
-                return divide(operand1, operand2);
-            } catch (error) {
-                updateDisplay("Error");
-                return "Cannot divide by zero";
-            }
+            return divide(Number(operand1), Number(operand2));
         default:
-            return operand2;
+            return 'Error';
     }
 }

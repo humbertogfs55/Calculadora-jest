@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Results</title>
+    <title>Artefacts</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -33,14 +33,31 @@
         .link:hover {
             background-color: #0056b3;
         }
+        .section {
+            margin-top: 40px;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Test Results</h1>
-        <p>Click the link below to view the test results in XML format:</p>
-        <a href="/test-results/junit.xml" class="link" target="_blank">View JUnit XML Test Results</a>
+        <h1>Artefacts</h1>
+        <p>Select an option below to view the relevant artefacts:</p>
+
+        <!-- Test Results Section -->
+        <div class="section">
+            <h2>Test Results</h2>
+            <p>Click the link below to view the test results in XML format:</p>
+            <a href="/artefacts/test-results/junit.xml" class="link" target="_blank">View JUnit XML Test Results</a>
+        </div>
+
+        <!-- Download Executable Section -->
+        <div class="section">
+            <h2>Download Executable</h2>
+            <p>Click the link below to download the executable file:</p>
+            <a href="/artefacts/dist/Calculadora Jest Setup 1.0.0.exe" class="link" download>Download EXE</a>
+        </div>
+
     </div>
 
 </body>

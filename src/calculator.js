@@ -1,19 +1,19 @@
-// Função de adição
+// Function to add
 function add(a, b) {
     return a + b;
 }
 
-// Função de subtração
+// Function to subtract
 function subtract(a, b) {
     return a - b;
 }
 
-// Função de multiplicação
+// Function to multiply
 function multiply(a, b) {
     return a * b;
 }
 
-// Função de divisão
+// Function to divide
 function divide(a, b) {
     if (b === 0) {
         throw new Error("Cannot divide by zero");
@@ -21,5 +21,5 @@ function divide(a, b) {
     return a / b;
 }
 
-// Exportação para usar nos testes
+// Export the functions
 module.exports = { add, subtract, multiply, divide };

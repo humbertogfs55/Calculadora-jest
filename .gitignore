@@ -1,1 +1,4 @@
 node_modules
+dist
+jenkins.yml
+test-results

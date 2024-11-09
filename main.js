@@ -1,25 +1,46 @@
-// main.js
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, globalShortcut } = require('electron');
 const path = require('path');
 
+let mainWindow;
+
 function createWindow() {
-    const win = new BrowserWindow({
-        width: 300,
-        height: 500,
+    mainWindow = new BrowserWindow({
+        width: 330,
+        height: 600,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js') // Optional: Use if needed
+            preload: path.join(__dirname, 'src', 'preload.js'),  // Set the path to preload.js
+            nodeIntegration: false,   // Disable Node.js integration in the renderer process
+            contextIsolation: true,   // Enable context isolation for security
+            enableRemoteModule: false,  // Disable the remote module (for security)
+            sandbox: false
         }
     });
 
-    win.loadFile('index.html');
+    mainWindow.loadFile('index.html');
+
+    mainWindow.on('closed', () => {
+        mainWindow = null;
+    });
 }
 
-app.on('ready', createWindow);
+app.whenReady().then(() => {
+    createWindow();
 
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit();
+    // Register the 'Ctrl+I' keyboard shortcut to open DevTools
+    globalShortcut.register('CmdOrCtrl+I', () => {
+        if (mainWindow) {
+            mainWindow.webContents.toggleDevTools();  // Toggle DevTools on Ctrl+I press
+        }
+    });
 });
 
-app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
+});
+
+// Unregister the shortcut when the app is quit (optional but good practice)
+app.on('will-quit', () => {
+    globalShortcut.unregisterAll();
 });

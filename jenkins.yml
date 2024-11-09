@@ -6,10 +6,9 @@ jenkins:
   securityRealm:
     local:
       users:
-        - username: "humbertogfs"
-          password: "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"
-          fullName: "humberto gomes"
-          email: "humbertogfs55@proton.me"
+        - name: "humbertogfs"  # 'username' -> 'name'
+          password: "12345"
+          description: "humberto gomes"  # 'fullName' -> 'description'
   authorizationStrategy:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
@@ -17,6 +16,6 @@ jenkins:
     git: "git"  # Define o caminho para o Git, caso necessário
   credentials:
     - id: "github-credentials"
-      username: "seu-usuario-github"
-      password: "seu-pat-github"
+      username: "humbertogfs"
+      password: "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"
       description: "Credenciais para acessar o repositório GitHub"

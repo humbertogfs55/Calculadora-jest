@@ -7,8 +7,6 @@ services:
       - "8080:8080"
     volumes:
       - jenkins_home:/var/jenkins_home
-    environment:
-      CASC_JENKINS_CONFIG: /var/jenkins_home/jenkins.yml
     networks:
       - jenkins-network
 
@@ -24,7 +22,10 @@ services:
   nginx:
     image: nginx:alpine
     volumes:
-      - ./test-results:/usr/share/nginx/html/test-results
+      - ./test-results:/usr/share/nginx/html/artefacts/test-results
+      - ./dist:/usr/share/nginx/html/artefacts/dist
+      - ./nginx/index.html:/usr/share/nginx/html/index.html
+ 
     ports:
       - "80:80"
     networks:
