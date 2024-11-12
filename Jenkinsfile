@@ -15,7 +15,6 @@ pipeline {
                 }
                 failure {
                     echo 'Tests failed, skipping build and notification steps.'
-                    currentBuild.result = 'FAILURE'
                 }
             }
         }
@@ -36,7 +35,6 @@ pipeline {
                 }
                 failure {
                     echo 'Build failed, skipping notification step.'
-                    currentBuild.result = 'FAILURE'
                 }
             }
         }
