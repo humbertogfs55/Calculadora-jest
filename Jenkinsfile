@@ -4,26 +4,7 @@ pipeline {
     environment {
         // Define the paths to where the results should be stored
         REPORT_DIR = "/usr/src/app/test-results"
-    }
-
-    stages {
-        stage('Checkout') {
-            steps {
-                script {
-                    // Use the GitHub credentials (github-credentials) for SCM
-                    checkout scm: [
-                        $class: 'GitSCM',
-                        branches: [[name: '*/main']],  // Adjust the branch name as needed
-                        userRemoteConfigs: [
-                            [
-                                url: 'https://github.com/humbertogfs55/Calculadora-jest-S107',  // Replace with your repo URL
-                                credentialsId: 'github-credentials'  // This is the ID you specified in jenkins.yml
-                            ]
-                        ]
-                    ]
-                }
-            }
-        }
+        GITHUB_TOKEN = credentials('github-token')  // Reference the GitHub token from Jenkins credentials
     }
 
     stages {

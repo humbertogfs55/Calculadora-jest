@@ -1,13 +1,13 @@
 FROM jenkins/jenkins:lts
 
-# Instalar Git, mailutils e outros pacotes necessários
+# Install Git, mailutils, and other necessary packages
 USER root
 RUN apt-get update && \
-    apt-get install -y git mailutils && \
+    apt-get install -y git mailutils curl && \
     apt-get clean
 
-# Voltar para o usuário jenkins
+# Return to the Jenkins user
 USER jenkins
 
-# Expôr a porta do Jenkins
+# Expose the Jenkins port
 EXPOSE 8080
