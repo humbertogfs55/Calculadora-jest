@@ -1,7 +1,3 @@
-pwd
-false
-sudo apt-get install mailutils
-
 # Get the email address from the Jenkins environment variable
 TO_EMAIL=$JENKINS_EMAIL
 
