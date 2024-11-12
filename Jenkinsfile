@@ -32,21 +32,6 @@ pipeline {
             }
         }
 
-        stage('Build Electron App') {
-            steps {
-                echo 'Building Electron app...'
-                sh 'npm run build'
-            }
-            post {
-                success {
-                    echo 'Build successful, proceeding to notification...'
-                }
-                failure {
-                    echo 'Build failed, skipping notification step.'
-                }
-            }
-        }
-
         stage('Notification') {
             steps {
                 echo 'Sending notification...'

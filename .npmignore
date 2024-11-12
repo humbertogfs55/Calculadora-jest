@@ -1,0 +1,6 @@
+jenkins_home
+dist
+docker
+nginx
+scripts
+test-results
