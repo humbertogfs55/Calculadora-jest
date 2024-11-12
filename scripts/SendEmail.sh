@@ -1,5 +1,15 @@
 pwd
 false
-echo "HAHAHAHAHAHAHAH"
 sudo apt-get install mailutils
-echo "Pipeline run completed ! Test results are available at http://localhost/test-reports" | mail -s "Pipeline completed" ${MY_EMAIL}
+
+# Get the email address from the Jenkins environment variable
+TO_EMAIL=$JENKINS_EMAIL
+
+# Subject and Body of the email
+SUBJECT="Build Notification"
+BODY="The build process has completed. Please check Jenkins for more details."
+
+echo "Pipeline run completed ! Test results are available at http://localhost/"
+
+# Send the email
+echo "$BODY" | mail -s "$SUBJECT" "$TO_EMAIL"
