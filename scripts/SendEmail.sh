@@ -3,6 +3,8 @@
 # Get the email address from the Jenkins environment variable
 TO_EMAIL=$JENKINS_EMAIL
 
+sudo apt-get install mailutils
+
 # Check if the TO_EMAIL is set
 if [ -z "$TO_EMAIL" ]; then
     echo "Error: JENKINS_EMAIL environment variable is not set."

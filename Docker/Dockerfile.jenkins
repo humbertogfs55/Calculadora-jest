@@ -1,13 +1,16 @@
 FROM jenkins/jenkins:lts
 
-# Install Git, mailutils, Node.js, and npm
+# Install Git, mailutils, Node.js, npm, and sudo
 USER root
 RUN apt-get update && \
-    apt-get install -y git mailutils curl && \
+    apt-get install -y git mailutils curl sudo && \
     curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs && \
     npm install -g npm && \
     apt-get clean
+
+# Add the Jenkins user to the sudoers file for passwordless sudo
+RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # Return to the Jenkins user
 USER jenkins
