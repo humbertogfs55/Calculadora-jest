@@ -5,25 +5,11 @@ services:
       dockerfile: Docker/Dockerfile.jenkins
     ports:
       - "8080:8080"
-    environment:
-      - DOCKER_GROUP=docker  # Set environment variable for group
-    user: "jenkins"  # Ensure Jenkins user is used
-    group_add:
-      - "docker"  # Add the Jenkins container to the Docker group
     volumes:
       - jenkins_home:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock 
+      - .:/workspace
     networks:
       - jenkins-network
-
-  node:
-    build:
-      context: .  # Root directory (package.json is here)
-      dockerfile: Docker/Dockerfile.node  # Path to your Node.js Dockerfile
-    volumes:
-      - .:/usr/src/app  # This mounts the root directory (including package.json) to /usr/src/app
-    working_dir: /usr/src/app  # Ensure the working directory is correct
-    command: ["npm", "test"]  # Running tests by default; adjust as needed
 
   nginx:
     image: nginx:alpine
@@ -40,6 +26,3 @@ services:
 networks:
   jenkins-network:
     driver: bridge
-
-volumes:
-  jenkins_home:

@@ -1,11 +1,12 @@
 FROM jenkins/jenkins:lts
 
-# Install Git, mailutils, Docker, and Docker Compose
+# Install Git, mailutils, Node.js, and npm
 USER root
 RUN apt-get update && \
-    apt-get install -y git mailutils docker.io && \
-    curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
-    chmod +x /usr/local/bin/docker-compose && \
+    apt-get install -y git mailutils curl && \
+    curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g npm && \
     apt-get clean
 
 # Return to the Jenkins user

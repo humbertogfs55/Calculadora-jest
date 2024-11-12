@@ -2,12 +2,25 @@ pipeline {
     agent any
 
     stages {
-        stage('Run Tests') {
+        stage('Install Dependencies') {
             steps {
-                script {
-                    // Run tests inside the Node.js container
-                    sh 'docker-compose -f docker-compose.yml run --rm node npm test'
+                echo 'Installing dependencies...'
+                sh 'npm install'
+            }
+            post {
+                success {
+                    echo 'Dependencies installed successfully.'
                 }
+                failure {
+                    echo 'Dependency installation failed.'
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh 'npm test'
             }
             post {
                 success {
@@ -24,10 +37,8 @@ pipeline {
                 branch 'main'  // Only run the build on the main branch
             }
             steps {
-                script {
-                    // Run the Electron build inside the same Node.js container
-                    sh 'docker-compose -f docker-compose.yml run --rm node npm run build'
-                }
+                echo 'Building Electron app...'
+                sh 'npm run build'
             }
             post {
                 success {
