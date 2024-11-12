@@ -33,9 +33,6 @@ pipeline {
         }
 
         stage('Build Electron App') {
-            when {
-                branch 'main'  // Only run the build on the main branch
-            }
             steps {
                 echo 'Building Electron app...'
                 sh 'npm run build'
@@ -51,9 +48,6 @@ pipeline {
         }
 
         stage('Notification') {
-            when {
-                branch 'main'  // Only send notification on the main branch
-            }
             steps {
                 echo 'Sending notification...'
                 sh '''
