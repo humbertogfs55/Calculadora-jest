@@ -7,24 +7,10 @@ yarn-error.log
 dist/
 build/
 
-# Dependency directories
-.babel/
-.eslintcache
-
-# IDE or editor folders and files
-.vscode/
-.idea/
-
-# Operating system-specific files
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
-
 # Environment files (sensitive data)
 .env
 
 # Test coverage reports
 test-results
-coverage/
+
+#docker volumes

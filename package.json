@@ -6,10 +6,16 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
-    "test": "jest"
+    "test": "jest",
+    "clean": "rm -rf dist && rm -rf node_modules/.cache && rm -rf build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "electron",
+    "calculator",
+    "jest",
+    "unit-tests"
+  ],
+  "author": "Humberto Gomes F S",
   "license": "ISC",
   "devDependencies": {
     "electron": "^33.2.0",
@@ -22,13 +28,13 @@
     "prompt-sync": "^4.2.0"
   },
   "build": {
-    "appId": "com.example.calculadora-jest",
+    "appId": "calculadora-jest",
     "productName": "Calculadora Jest",
     "files": [
-      "dist/**/*",
-      "src/**/*",
+      "src/*",
       "index.html",
       "main.js",
+      "calculatorCLI.js",
       "package.json"
     ],
     "directories": {
