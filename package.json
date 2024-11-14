@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder",
+    "build": "electron-builder --win",
     "test": "jest",
     "clean": "rm -rf dist && rm -rf node_modules/.cache && rm -rf build"
   },
@@ -24,7 +24,6 @@
     "jest-junit": "^16.0.0"
   },
   "dependencies": {
-    "calculadora-jest": "file:",
     "prompt-sync": "^4.2.0"
   },
   "build": {
@@ -42,12 +41,6 @@
     },
     "win": {
       "target": "nsis"
-    },
-    "mac": {
-      "target": "dmg"
-    },
-    "linux": {
-      "target": "AppImage"
     }
   }
 }
