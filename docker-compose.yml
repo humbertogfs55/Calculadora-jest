@@ -12,6 +12,11 @@ services:
       - .:/workspace
     networks:
       - jenkins-network
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: jenkins
 
   nginx:
     image: nginx:alpine
@@ -19,11 +24,26 @@ services:
       - ./test-results:/usr/share/nginx/html/artefacts/test-results
       - ./dist:/usr/share/nginx/html/artefacts/dist
       - ./nginx/index.html:/usr/share/nginx/html/index.html
- 
     ports:
       - "80:80"
     networks:
       - jenkins-network
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: nginx
+
+  fluentd:
+    image: fluent/fluentd:edge-debian
+    ports:
+      - "24224:24224"
+    volumes:
+      - ./fluentd/fluent.conf:/fluentd/etc/fluent.conf
+      - ./logs:/fluentd/logs
+    networks:
+      - jenkins-network
+
 
 networks:
   jenkins-network:

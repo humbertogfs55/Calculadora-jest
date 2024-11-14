@@ -4,3 +4,5 @@ docker
 nginx
 scripts
 test-results
+logs
+fluentd

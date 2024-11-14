@@ -3,3 +3,4 @@ dist
 jenkins.yml
 test-results
 jenkins_home
+logs
