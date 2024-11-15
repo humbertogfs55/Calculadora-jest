@@ -1,9 +1,0 @@
-jenkins_home/
-docker/
-nginx/
-scripts/
-test-results/
-logs/
-fluentd/
-tests/
-

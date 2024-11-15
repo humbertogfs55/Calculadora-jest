@@ -9,7 +9,6 @@ services:
       - JENKINS_EMAIL=humbertogfs55@gmail.com
     volumes:
       - ./jenkins_home:/var/jenkins_home
-      - .:/workspace
     networks:
       - jenkins-network
     logging:
