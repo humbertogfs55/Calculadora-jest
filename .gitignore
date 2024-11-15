@@ -4,3 +4,4 @@ jenkins.yml
 test-results
 jenkins_home
 logs
+debug.log

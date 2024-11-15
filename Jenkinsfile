@@ -35,7 +35,7 @@ pipeline {
         stage('Build Electron App') {
             steps {
                 echo 'Building Electron app...'
-                sh 'npm run build'
+                sh 'npm run build-package'
             }
             post {
                 success {
@@ -46,7 +46,6 @@ pipeline {
                 }
             }
         }
-
         stage('Notification') {
             steps {
                 echo 'Sending notification...'
@@ -70,7 +69,7 @@ pipeline {
         stage('Publish Artifacts') {
             steps {
                 echo 'Publishing artifacts...'
-                archiveArtifacts artifacts: 'build/*.exe', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'dist/**/*.exe', allowEmptyArchive: true
                 archiveArtifacts artifacts: 'test-results/*.xml', allowEmptyArchive: true
             }
             post {

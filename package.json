@@ -6,6 +6,7 @@
   "scripts": {
     "start": "electron .",
     "build": "electron-builder --win",
+    "build-package": "electron-packager . MyApp --platform=win32 --arch=x64 --out=dist/ --electron-version=23.1.0 --ignore='(jenkins_home|docker|nginx|scripts|test-results|logs|fluentd|tests)'",
     "test": "jest",
     "clean": "rm -rf dist && rm -rf node_modules/.cache && rm -rf build"
   },
