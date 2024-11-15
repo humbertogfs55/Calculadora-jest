@@ -7,7 +7,6 @@ RUN apt-get update && \
     curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
     apt-get install -y nodejs && \
     npm install -g npm && \
-    npm install -g electron-packager && \
     dpkg --add-architecture i386 && \
     apt-get update && \
     apt-get install -y wine64 wine32 && \
