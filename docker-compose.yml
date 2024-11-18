@@ -7,6 +7,7 @@ services:
       - "8080:8080"
     environment:
       - JENKINS_EMAIL=humbertogfs55@gmail.com
+      - WINEPREFIX=/tmp/wine
     volumes:
       - ./jenkins_home:/var/jenkins_home
     networks:
