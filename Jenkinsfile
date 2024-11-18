@@ -36,7 +36,7 @@ pipeline {
             steps {
                 echo 'Building Electron app...'
                 sh 'npm run clean'
-                sh 'sudo chown -R jenkins:jenkins /var/jenkins_home/wine'
+                sh 'sudo chmod -R u+w /var/jenkins_home/.cache'
                 sh 'npm run build'
             }
             post {
