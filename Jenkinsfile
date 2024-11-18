@@ -35,11 +35,13 @@ pipeline {
         stage('Build Electron App') {
             steps {
                 echo 'Building Electron app...'
-                sh 'npm run clean'
-                sh 'sudo chown -R jenkins:jenkins /var/jenkins_home'
-                sh 'sudo chmod -R u+w /var/jenkins_home/.cache'
-                sh 'sudo chmod -R u+w /var/jenkins_home'
-                sh 'npm run build'
+                script {
+                    // Pull the recommended Docker image for Electron Builder
+                    docker.image('electronuserland/builder:wine').inside {
+                        // Set the working directory inside the container
+                        sh 'cd /workspace && npm install && npm run build'
+                    }
+                }
             }
             post {
                 success {
