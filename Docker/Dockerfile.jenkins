@@ -1,6 +1,6 @@
 FROM jenkins/jenkins:lts
 
-# Install Git, mailutils, Node.js, npm, sudo, and Docker
+# Install Git, mailutils, Node.js, npm, and sudo
 USER root
 RUN apt-get update && \
     apt-get install -y \
@@ -8,15 +8,11 @@ RUN apt-get update && \
     mailutils \
     curl \
     sudo \
-    software-properties-common \
-    docker.io && \
+    software-properties-common && \
     curl -sL https://deb.nodesource.com/setup_22.x | bash - && \
     apt-get install -y nodejs && \
     npm install -g npm && \
     apt-get clean
-
-# Add the Jenkins user to the Docker group so it can run Docker commands
-RUN usermod -aG docker jenkins
 
 # Add the Jenkins user to the sudoers file for passwordless sudo
 RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers

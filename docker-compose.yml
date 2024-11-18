@@ -18,6 +18,19 @@ services:
         fluentd-address: localhost:24224
         tag: jenkins
 
+  electron-builder:
+    image: electronuserland/builder:wine
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .:/project
+      - ./dist:/dist  # Share the build directory (or wherever your source files are located)
+    networks:
+      - jenkins-network
+    environment:
+      - DISPLAY=:0  # Set display if you are running Electron in X11 environment
+    privileged: true  # Allows the container to run Wine and other tools that may need additional privileges
+    command: tail -f /dev/null  # Keeps the container running
+
   nginx:
     image: nginx:alpine
     volumes:

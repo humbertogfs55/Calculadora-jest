@@ -36,11 +36,10 @@ pipeline {
             steps {
                 echo 'Building Electron app...'
                 script {
-                    // Pull the recommended Docker image for Electron Builder
-                    docker.image('electronuserland/builder:wine').inside {
-                        // Set the working directory inside the container
-                        sh 'cd /workspace && npm install && npm run build'
-                    }
+                    // Use the already running docker container (electron-builder) to build the app
+                    sh '''
+                        docker exec -u root electron-builder bash -c "cd /project && npm install && npm run build"
+                    '''
                 }
             }
             post {
@@ -52,6 +51,7 @@ pipeline {
                 }
             }
         }
+
         stage('Notification') {
             steps {
                 echo 'Sending notification...'
