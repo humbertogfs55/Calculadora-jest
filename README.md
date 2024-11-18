@@ -3,10 +3,10 @@
 
 Este é um projeto de uma calculadora simples com testes unitários utilizando o framework Jest, ele tambem conta com um wraper electron que faz o front end da aplicação e 4 containers dockers que fazem a parte ops do projeto. 
 
--Jenkins: Container que roda a pipeline CI/CD identificada no arquivo jenkinsfile, contem passos para testar empacotar e distribuir os executaveis e relatorios de teste.
--electron-builder: Container utilizado exclusivamente durante o passo de build da pipeline, permite empacotar o software para windows mesmo em um ambiente linux(docker container)
--Nginx: Container que publica uma pagina html para servir os artefatos estaticos gerados ao longo da build
--fluentd: Container que faz controle de loging para os containers  do jenkins e do nginx
+- Jenkins: Container que roda a pipeline CI/CD identificada no arquivo jenkinsfile, contem passos para testar empacotar e distribuir os executaveis e relatorios de teste.
+- electron-builder: Container utilizado exclusivamente durante o passo de build da pipeline, permite empacotar o software para windows mesmo em um ambiente linux(docker container)
+- Nginx: Container que publica uma pagina html para servir os artefatos estaticos gerados ao longo da build
+- fluentd: Container que faz controle de loging para os containers  do jenkins e do nginx
 
 Este projeto foi criado para fins educacionais.
 
