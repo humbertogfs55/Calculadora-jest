@@ -36,6 +36,7 @@ pipeline {
             steps {
                 echo 'Building Electron app...'
                 sh 'npm run clean'
+                sh 'sudo chown -R jenkins:jenkins /var/jenkins_home'
                 sh 'sudo chmod -R u+w /var/jenkins_home/.cache'
                 sh 'sudo chmod -R u+w /var/jenkins_home'
                 sh 'npm run build'
