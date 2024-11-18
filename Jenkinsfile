@@ -35,13 +35,8 @@ pipeline {
 
         stage('Build Electron App') {
             steps {
-                echo 'Building Electron app...'
-                script {
-                    // Use the already running docker container (electron-builder) to build the app
-                    sh '''
-                        docker exec -u root electron-builder bash -c "cd /project && npm install && npm run build"
-                    '''
-                }
+                echo 'Building Electron app using dedicated docker container...'
+                    sh 'docker exec -u root electron-builder bash -c "cd /project && npm install && npm run build"'
             }
             post {
                 success {

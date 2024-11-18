@@ -1,4 +1,4 @@
-const { add, subtract, divide } = require('../src/calculator');
+const { add, subtract, divide, multiply } = require('../src/calculator');
 
 // Teste da função de adição
 test('adds 2 + 3 to equal 5', () => {
@@ -43,4 +43,14 @@ test('divides -6 / 3 to equal -2', () => {
 // Teste da divisão por zero
 test('divides by zero to throw error', () => {
     expect(() => divide(5, 0)).toThrow("Cannot divide by zero");
+});
+
+// Teste da função de multiplicação
+test('multiplies 10 * 2 to equal 20', () => {
+    expect(multiply(10, 2)).toBe(20);
+});
+
+// Teste de falha da função de multiplicação
+test('multiplies 10 * 2 to equal 20', () => {
+    expect(multiply(10, 2)).not.toBe(190);
 });
