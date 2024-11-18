@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "echo $PWD && ls -la && electron-builder --win",
-    "build-package": "electron-packager . CalculatorApp --platform=win32 --arch=x64 --out=dist/ --electron-version=23.1.0",
+    "build": "electron-builder --win",
+    "build-linux": "electron-builder --linux",
     "test": "jest",
     "clean": "rm -rf dist && rm -rf node_modules/.cache && rm -rf build"
   },
@@ -35,9 +35,9 @@
     "productName": "Calculadora Jest",
     "files": [
       "**/*",
-      "!jenkins_home",
-      "!jenkins_home/*",
       "!jenkins_home/**/*",
+      "!tests",
+      "!tests/**/*",
       "!README.md"
     ],
     "directories": {

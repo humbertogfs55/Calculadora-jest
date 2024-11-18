@@ -35,7 +35,8 @@ pipeline {
         stage('Build Electron App') {
             steps {
                 echo 'Building Electron app...'
-                sh 'npm run build-package'
+                sh 'npm run clean'
+                sh 'npm run build'
             }
             post {
                 success {
