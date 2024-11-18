@@ -3,12 +3,13 @@ services:
     build:
       context: .
       dockerfile: Docker/Dockerfile.jenkins
+    container_name: jenkins
     ports:
       - "8080:8080"
     environment:
       - JENKINS_EMAIL=humbertogfs55@gmail.com
     volumes:
-      - ./jenkins_home:/var/jenkins_home
+      - ../docker-volumes/jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - jenkins-network
@@ -20,10 +21,11 @@ services:
 
   electron-builder:
     image: electronuserland/builder:wine
+    container_name: electron-builder
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - .:/project
-      - ./dist:/dist  # Share the build directory (or wherever your source files are located)
+      - ./dist:/project/dist  # Share the build directory (or wherever your source files are located)
     networks:
       - jenkins-network
     environment:
@@ -33,6 +35,7 @@ services:
 
   nginx:
     image: nginx:alpine
+    container_name: nginx
     volumes:
       - ./test-results:/usr/share/nginx/html/artefacts/test-results
       - ./dist:/usr/share/nginx/html/artefacts/dist
@@ -49,6 +52,7 @@ services:
 
   fluentd:
     image: fluent/fluentd:edge-debian
+    container_name: fluentd
     ports:
       - "24224:24224"
     volumes:

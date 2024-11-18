@@ -1,5 +1,5 @@
 # Node modules
-node_modules
+node_modules/
 npm-debug.log
 yarn-error.log
 
@@ -14,3 +14,8 @@ build/
 test-results
 
 #docker volumes
+jenkins_home/
+
+#gitstuff
+.github/
+.git/
