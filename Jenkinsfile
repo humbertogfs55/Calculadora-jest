@@ -36,6 +36,7 @@ pipeline {
             steps {
                 echo 'Building Electron app...'
                 sh 'npm run clean'
+                sh 'whoami'
                 sh 'npm run build'
             }
             post {
