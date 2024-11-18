@@ -36,7 +36,7 @@ pipeline {
             steps {
                 echo 'Building Electron app...'
                 sh 'npm run clean'
-                sh 'whoami'
+                sh 'sudo chown -R jenkins:jenkins /var/jenkins_home/wine'
                 sh 'npm run build'
             }
             post {
